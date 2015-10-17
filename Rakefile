@@ -44,11 +44,11 @@ task :pull do
 
   # Copy over user/
   puts "Copying remote data..."
-  sh("find . -depth -name 'grav-' -exec '{}' ';' cd  && ls")
+  sh("find . -depth -name 'backup' -exec cd '{}' ';'  && ls")
 
   # Remove the backup
   puts "Removing backup..."
-  sh("find . -depth -name 'grav-' -exec rm -rf '{}' ';'")
+  sh("find . -depth -name 'backup' -exec rm -rf '{}' ';'")
 
   # Migration completed
   puts "Migration completed!"
