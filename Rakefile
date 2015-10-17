@@ -26,7 +26,7 @@ task :pull do
   # Remove backup
   puts "Removing backup..."
   move_to_backup = ' "cd ' + conf["remote"]["path"] + '/backup'
-  remove_backup = ' && rm -r * -f"'
+  remove_backup = ' && rm *"'
   ssh = "ssh " + conf["ssh"]["username"] + "@" + conf["ssh"]["host"] +
     " -p " + conf["ssh"]["port"] + move_to_backup + remove_backup
   sh(ssh)
