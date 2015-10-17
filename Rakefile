@@ -44,7 +44,7 @@ task :pull do
 
   # Copy over user/
   puts "Copying remote data..."
-  sh("find . -depth -name 'backup' -exec cd '{}' ';'  && ls")
+  sh("find . -depth -name 'backup' -exec cd '{}' ';'  && cp -rf user ../")
 
   # Remove the backup
   puts "Removing backup..."
