@@ -1,0 +1,8 @@
+ssh:
+  username: "example"
+  host: "example.com"
+  password: ""
+  port: "4000"
+remote:
+  address: "http://example.com"
+  path: "/home/my_server/public_html/example.com"
