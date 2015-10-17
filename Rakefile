@@ -1,5 +1,4 @@
 require "yaml"
-require "date"
 
 conf = YAML.load_file(".grav-pull.yml")
 
@@ -13,14 +12,10 @@ task :pull do
     " -p " + conf["ssh"]["port"] + move_to_address + create_backup
   sh(ssh)
 
-  # Make sure you remove "backup" in web.config + .htaccess:
-  # RewriteRule ^(.git|cache|bin|logs|backup)/(.*) error [L]?
-  # Add to .htaccess?
-  # allow zip from backup?
-
   # Remove existing backups
   puts "Remove existing backups..."
   sh("rm -rf backup")
+  sh("rm -rf user")
 
   # Download backup
   puts "Downloading backup..."
@@ -44,7 +39,8 @@ task :pull do
 
   # Copy over user/
   puts "Copying remote data..."
-  sh("find . -depth -name 'backup' -exec cd '{}' ';'  && cp -rf user ../")
+  sh("mkdir user")
+  sh("cd backup && cp -rf user ../")
 
   # Remove the backup
   puts "Removing backup..."
