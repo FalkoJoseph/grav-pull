@@ -16,6 +16,8 @@ task :pull do
   puts "Remove existing backups..."
   sh("rm -rf backup")
   sh("rm -rf user")
+  sh("rm -rf images")
+  sh("rm -rf cache")
 
   # Download backup
   puts "Downloading backup..."
@@ -37,10 +39,10 @@ task :pull do
   sh("find . -depth -name '*.zip' -exec unzip -d backup '{}' ';'")
   sh("find . -depth -name '*.zip' -exec rm -rf '{}' ';'")
 
-  # Copy over user/
+  # Copy over user data
   puts "Copying remote data..."
   sh("mkdir user")
-  sh("cd backup && cp -rf user ../")
+  sh("cd backup && cp -rf user ../ && cp -rf images ../ && cp -rf cache ../")
 
   # Remove the backup
   puts "Removing backup..."
